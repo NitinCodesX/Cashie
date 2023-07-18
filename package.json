@@ -5,17 +5,23 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "seed":"node seeder.js"
+    "seed": "node seeder.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "antd": "^5.7.0",
+    "axios": "^1.4.0",
     "body-parser": "^1.20.2",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^7.3.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.14.2",
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2"
   }
 }
