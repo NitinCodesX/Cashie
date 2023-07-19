@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../Styles/DefaultLayout.css'
-
+import {Link} from 'react-router-dom'
+import {icons, HomeOutlined,PaperClipOutlined, UnorderedListOutlined, UserOutlined, LogoutOutlined} from "@ant-design/icons"
 const DefaultLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
@@ -18,10 +19,26 @@ const DefaultLayout = () => {
           <span class="open">{isSidebarOpen ? '<' : '>'}</span>
         </div>
         <ul>
-          <li>Option 1</li>
-          <li>Option 2</li>
-          <li>Option 3</li>
-          <li>Option 4</li>
+          <li>
+          <HomeOutlined />
+          <Link to="/">Home</Link>
+          </li>
+          <li>
+          <PaperClipOutlined/>
+          <Link to="/bills">Bills</Link>
+          </li>
+          <li>
+          <UnorderedListOutlined/>
+          <Link to="/items">Items</Link>
+          </li>
+          <li>
+          <UserOutlined />
+          <Link to="/customers">Customers</Link>
+          </li>
+          <li className='logout'>
+          <LogoutOutlined/>
+          <Link to="/logout">Logout</Link>
+          </li>
         </ul>
       </div>
       <div className="content">
