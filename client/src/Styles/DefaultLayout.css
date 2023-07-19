@@ -23,6 +23,7 @@
     background-color:burlywood;
     transition: width 0.3s ease;
     text-align: center;
+    margin-right: 10px;
   }
   
   .sidebar.open {
@@ -55,7 +56,7 @@
   }
    
   li a{
-    text-decoration: none;
+    /* text-decoration: none; */
     margin-left: 15px;
     font-size: 18px;
   }
