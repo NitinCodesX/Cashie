@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ItemPage from "./pages/ItemPage.js";
 import DefaultLayout from "./components/DefaultLayout";
+import AddToCartPage from "./pages/AddToCart";
 function App() {
   return (
     <div style={{ display: "flex" }}>
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<HomePage />} />
           <Route path="/items" element={<ItemPage />} />
+          <Route path="/addToCart" element={<AddToCartPage />} />
         </Routes>
       </BrowserRouter>
     </div>

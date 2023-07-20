@@ -2,10 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "antd";
 import ItemList from "../components/ItemList";
+import AddToCartPage from "../pages/AddToCart";
+import { CartProvider, useCart } from "../action/CartContext";
+
 const HomePage = () => {
   const [itemsData, setItemsData] = useState([]);
 
-  //useEffect
   useEffect(() => {
     const getAllItems = async () => {
       try {
@@ -20,17 +22,22 @@ const HomePage = () => {
     };
     getAllItems();
   }, []);
+
   return (
-    <div style={{ display: "block", gap: "10px" }}>
-      <Row>
-        {itemsData.map((item) => (
-          <Col xs={24} lg={6} md={12} sm={6}>
-            {/* props is used here*/}
-            <ItemList item={item}></ItemList>
-          </Col>
-        ))}
-      </Row>
-    </div>
+    <CartProvider>
+      <div>
+        <div style={{ display: "block", gap: "10px" }}>
+          <Row gutter={[16, 16]}>
+            {itemsData.map((item) => (
+              <Col xs={24} lg={6} md={12} sm={6} key={item.id}>
+                <ItemList item={item} />
+              </Col>
+            ))}
+          </Row>
+        </div>
+        <AddToCartPage />
+      </div>
+    </CartProvider>
   );
 };
 

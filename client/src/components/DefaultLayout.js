@@ -44,6 +44,10 @@ const DefaultLayout = () => {
             <LogoutOutlined />
             <Link to="/logout">Logout</Link>
           </li>
+          <li className="addToCart">
+            <LogoutOutlined />
+            <Link to="/AddToCart">Add To Cart</Link>
+          </li>
         </ul>
       </div>
     </div>
