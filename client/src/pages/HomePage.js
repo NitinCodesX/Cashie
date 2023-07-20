@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "antd";
 import ItemList from "../components/ItemList";
-import AddToCartPage from "../pages/AddToCart";
-import { CartProvider, useCart } from "../action/CartContext";
+// import AddToCartPage from "../pages/AddToCart";
+import { CartProvider} from "../action/CartContext";
 
 const HomePage = () => {
   const [itemsData, setItemsData] = useState([]);
@@ -35,7 +35,7 @@ const HomePage = () => {
             ))}
           </Row>
         </div>
-        <AddToCartPage />
+
       </div>
     </CartProvider>
   );

@@ -1,28 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
 import "../Styles/DefaultLayout.css";
-
 import { Link } from "react-router-dom";
+
 import {
   HomeOutlined,
   PaperClipOutlined,
   UnorderedListOutlined,
   UserOutlined,
   LogoutOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../redux/actions"; // Import the addToCart action
+
 const DefaultLayout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const itemButton = {
+    margin: 10,
+    marginLeft: 60,
+    marginTop: 10,
+  };
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item)); // Dispatch the addToCart action with the selected item
   };
 
   return (
     <div className="App">
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className={`logo ${isSidebarOpen ? "open" : ""}`}>CASHIE</div>
-        <div className="sidebar-toggle" onClick={toggleSidebar}>
-          <span class="open">{isSidebarOpen ? "<" : ">"}</span>
-        </div>
+       
         <ul>
           <li>
             <HomeOutlined />
@@ -45,7 +59,7 @@ const DefaultLayout = () => {
             <Link to="/logout">Logout</Link>
           </li>
           <li className="addToCart">
-            <LogoutOutlined />
+            <ShoppingCartOutlined />
             <Link to="/AddToCart">Add To Cart</Link>
           </li>
         </ul>

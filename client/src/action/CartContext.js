@@ -5,9 +5,17 @@ const CartContext = createContext();
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
+      console.log("add item => ", ...state);
+      console.log([...state, action.payload]);
       return [...state, action.payload];
     case "REMOVE_FROM_CART":
-      return state.filter((item) => item.id !== action.payload.id);
+      let index = state.findIndex((item) => item._id === action.payload._id);
+      console.log("here", state);
+      if (index >= 0) {
+        state.splice(index, 1);
+      }
+      console.log("here again", state);
+      return [...state];
     default:
       return state;
   }

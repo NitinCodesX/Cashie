@@ -1,10 +1,9 @@
 import { Button } from "antd";
 import React from "react";
-import { useCart } from "../action/CartContext";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/actions";
 
 const ItemList = ({ item }) => {
-  const { dispatch } = useCart();
-
   const imgStyle = {
     height: "15rem",
     width: "15rem",
@@ -23,8 +22,10 @@ const ItemList = ({ item }) => {
     marginTop: 10,
   };
 
+  const dispatch = useDispatch();
+
   const handleAddToCart = () => {
-    dispatch({ type: "ADD_TO_CART", payload: item });
+    dispatch(addToCart(item));
   };
 
   return (
