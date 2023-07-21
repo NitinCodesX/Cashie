@@ -11,7 +11,7 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../redux/actions"; // Import the addToCart action
+import { increaseQty } from "../redux/slices/cartSlice"; // Import the addToCart action
 
 const DefaultLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
@@ -29,7 +29,7 @@ const DefaultLayout = () => {
   };
 
   const handleShowCart = (item) => {
-    dispatch(addToCart(item)); // Dispatch the addToCart action with the selected item
+    dispatch(increaseQty(item)); // Dispatch the addToCart action with the selected item
   };
 
   return (

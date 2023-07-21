@@ -9,13 +9,14 @@ const backgroundColor = "#d4bd7d";
 const HomePage = () => {
   const [itemsData, setItemsData] = useState([]);
   const [popupModal, setPopupModal] = useState(false);
-  const [editItem,setEditItem]=useState(null)
+  // const [editItem,setEditItem]=useState(null)
 
   const getAllItems = async () => {
     try {
       const { data } = await axios.get(
         "http://localhost:8080/api/items/get-item"
       );
+      console.log(data);
       setItemsData(data);
     } catch (error) {
       console.log(error);
@@ -32,12 +33,12 @@ const HomePage = () => {
         "http://localhost:8080/api/items/add-item",
         value
       );
-      console.log(res)
+      console.log(res);
       message.success("Item added successfully");
       getAllItems();
     } catch (error) {
       message.error("Something went wrong");
-      
+
       console.log(error);
     }
   };
@@ -107,12 +108,16 @@ const HomePage = () => {
             <Form.Item name="image" label="Image URL">
               <Input />
             </Form.Item>
-            <Form.Item name="category" label="Category" rules={[{ required: true, message: 'Please select a category.' }]}>
-            <Select name="category">
-              <Select.Option value="drinks">Drinks</Select.Option>
-              <Select.Option value="rice">Rice</Select.Option>
-              <Select.Option value="noodles">Noodels</Select.Option>
-            </Select>
+            <Form.Item
+              name="category"
+              label="Category"
+              rules={[{ required: true, message: "Please select a category." }]}
+            >
+              <Select name="category">
+                <Select.Option value="drinks">Drinks</Select.Option>
+                <Select.Option value="rice">Rice</Select.Option>
+                <Select.Option value="noodles">Noodels</Select.Option>
+              </Select>
             </Form.Item>
             <div className="d-flex justifu-content-end">
               <Button type="primary" htmlType="submit">

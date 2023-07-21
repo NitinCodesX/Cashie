@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "antd";
-import { addToCart } from "../redux/actions";
+// import { increaseQty } from "../redux/actions";
 import { useDispatch } from "react-redux"; // Import the useSelector and useDispatch hooks
 import { decreaseQty, increaseQty } from "../redux/slices/cartSlice";
 const CartItem = ({ item }) => {
