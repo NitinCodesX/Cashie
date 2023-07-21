@@ -28,7 +28,7 @@ const DefaultLayout = () => {
     marginTop: 10,
   };
 
-  const handleAddToCart = (item) => {
+  const handleShowCart = (item) => {
     dispatch(addToCart(item)); // Dispatch the addToCart action with the selected item
   };
 
@@ -36,7 +36,7 @@ const DefaultLayout = () => {
     <div className="App">
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className={`logo ${isSidebarOpen ? "open" : ""}`}>CASHIE</div>
-       
+
         <ul>
           <li>
             <HomeOutlined />
@@ -60,7 +60,7 @@ const DefaultLayout = () => {
           </li>
           <li className="addToCart">
             <ShoppingCartOutlined />
-            <Link to="/AddToCart">Add To Cart</Link>
+            <Link to="/ShowCart">Show Cart</Link>
           </li>
         </ul>
       </div>

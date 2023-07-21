@@ -19,7 +19,7 @@ const addItemController = async (req, res) => {
     await newItem.save(); //new Item is the instance, it is saving the reference for itemModel, so it will be saved accordingly
     res.status(201).send("Item created successfully");
   } catch (error) {
-    res.status(400).send("error", error);
+    res.status(401).send(error);
     console.log(error);
   }
 };

@@ -24,7 +24,7 @@ const ItemList = ({ item }) => {
 
   const dispatch = useDispatch();
 
-  const handleAddToCart = () => {
+  const handleShowCart = () => {
     dispatch(addToCart(item));
   };
 
@@ -32,8 +32,11 @@ const ItemList = ({ item }) => {
     <div style={card}>
       <img style={imgStyle} src={item.image} alt={item.name} />
       <h2 style={{ textAlign: "center", margin: "5px" }}>{item.name}</h2>
-      <Button style={itemButton} onClick={handleAddToCart}>
+      <Button style={itemButton} onClick={handleShowCart}>
         Add to cart
+      </Button>
+      <Button>
+      Edit
       </Button>
     </div>
   );
