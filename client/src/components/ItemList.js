@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/actions";
+import { addToCart } from "../redux/slices/cartSlice";
 
 const ItemList = ({ item }) => {
   const imgStyle = {
@@ -35,9 +35,7 @@ const ItemList = ({ item }) => {
       <Button style={itemButton} onClick={handleShowCart}>
         Add to cart
       </Button>
-      <Button>
-      Edit
-      </Button>
+      <Button>Edit</Button>
     </div>
   );
 };

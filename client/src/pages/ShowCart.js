@@ -5,16 +5,16 @@ import "../Styles/ShowCart.css";
 import CartItem from "../components/CartItem";
 
 const ShowCartPage = () => {
-  const cartItems = useSelector((state) => state.cart.cartItems); // Access cart items from the Redux store
+  const { data } = useSelector((state) => state.cart); // Access cart items from the Redux store
 
   return (
     <div className="itemWrapper">
       <h1>Cart Items</h1>
-      {cartItems.length === 0 ? (
+      {data.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <div>
-          {cartItems.map((item) => (
+          {data.map((item) => (
             <CartItem item={item} />
           ))}
         </div>
