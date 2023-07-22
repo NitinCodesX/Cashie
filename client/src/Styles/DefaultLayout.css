@@ -1,71 +1,72 @@
 .App {
-    display: flex;
-  }
-  .open{
-    border-radius: 10px;
-  }
-  .logo{
-    background-color: rgb(183, 120, 38);
-    text-align: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    color: white;
-    font-weight: 900;
-    font-size: 30px;
-  }
-  .logo.open{
-    font-size: 18px;
-  }
-  .sidebar {
-    border-radius: 10px;
-    height: 100vh;
-    width: 320px;
-    background-color:burlywood;
-    transition: width 0.3s ease;
-    text-align: center;
-  }
-  
-  .sidebar.open {
-    width: 200px;
-  }
-  
-  .sidebar-toggle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    cursor: pointer;
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .sidebar-toggle span {
-    font-size: 24px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  li {
-    padding: 40px;
-    border-bottom: 1px solid #ccc;
-  }
-   
-  li a{
-    text-decoration: none;
-    margin-left: 15px;
-    font-size: 18px;
-  }
+  display: flex;
+}
+.open {
+  border-radius: 10px;
+}
+.logo {
+  background-color: rgb(183, 120, 38);
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: white;
+  font-weight: 900;
+  font-size: 30px;
+}
+.logo.open {
+  font-size: 18px;
+}
+.sidebar {
+  border-radius: 10px;
+  height: calc(100vh - 16px);
+  width: 280px;
+  background-color: burlywood;
+  transition: width 0.3s ease;
+  text-align: center;
+  /* margin-right: 10px; */
+  position: fixed;
+}
 
-  .logout button{
-    margin-left:15px
-  }
+.sidebar.open {
+  width: 200px;
+}
 
+.sidebar-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+}
 
-  .content {
-    flex-grow: 1;
-    padding: 20px;
-  }
+.sidebar-toggle span {
+  font-size: 24px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 40px;
+  border-bottom: 1px solid #ccc;
+}
+
+li a {
+  /* text-decoration: none; */
+  margin-left: 15px;
+  font-size: 18px;
+}
+
+.logout button {
+  margin-left: 15px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}

@@ -1,12 +1,20 @@
-const express=require('express')
-const { getItemController, addItemController}=require('../controllers/itemController')
+const express = require("express");
+const {
+  getItemController,
+  addItemController,
+  editItemController,
+} = require("../controllers/itemController");
 
-const router=express.Router();
+const router = express.Router();
 //routes
 
 //Method - get
-router.get('/get-item',getItemController);
+router.get("/get-item", getItemController);
 
-//Method - POST
-router.post('/add-item',addItemController);
-module.exports=router;  
+// //Method - POST
+router.post("/add-item", addItemController);
+
+// //Meth0d - edit
+router.put('/edit-item',editItemController)
+
+module.exports = router;

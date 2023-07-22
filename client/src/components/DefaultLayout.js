@@ -1,49 +1,68 @@
-import React, { useState } from 'react';
-import '../Styles/DefaultLayout.css'
-import {Link} from 'react-router-dom'
-import {icons, HomeOutlined,PaperClipOutlined, UnorderedListOutlined, UserOutlined, LogoutOutlined} from "@ant-design/icons"
+import React from "react";
+import "../Styles/DefaultLayout.css";
+import { Link } from "react-router-dom";
+
+import {
+  HomeOutlined,
+  PaperClipOutlined,
+  UnorderedListOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  ShoppingCartOutlined,
+} from "@ant-design/icons";
+import { useSelector, useDispatch } from "react-redux";
+import { increaseQty } from "../redux/slices/cartSlice"; // Import the addToCart action
+
 const DefaultLayout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const itemButton = {
+    margin: 10,
+    marginLeft: 60,
+    marginTop: 10,
+  };
+
+  const handleShowCart = (item) => {
+    dispatch(increaseQty(item)); // Dispatch the addToCart action with the selected item
+  };
+
   return (
     <div className="App">
-      <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-        <div className={`logo ${isSidebarOpen ? 'open' : ''}`}>
-            CASHIE
-        </div>
-        <div className="sidebar-toggle" onClick={toggleSidebar}>
-          <span class="open">{isSidebarOpen ? '<' : '>'}</span>
-        </div>
+      <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+        <div className={`logo ${isSidebarOpen ? "open" : ""}`}>CASHIE</div>
+
         <ul>
           <li>
-          <HomeOutlined />
-          <Link to="/">Home</Link>
+            <HomeOutlined />
+            <Link to="/home">Home</Link>
           </li>
           <li>
-          <PaperClipOutlined/>
-          <Link to="/bills">Bills</Link>
+            <PaperClipOutlined />
+            <Link to="/bills">Bills</Link>
           </li>
           <li>
-          <UnorderedListOutlined/>
-          <Link to="/items">Items</Link>
+            <UnorderedListOutlined />
+            <Link to="/items">Items</Link>
           </li>
           <li>
-          <UserOutlined />
-          <Link to="/customers">Customers</Link>
+            <UserOutlined />
+            <Link to="/customers">Customers</Link>
           </li>
-          <li className='logout'>
-          <LogoutOutlined/>
-          <Link to="/logout">Logout</Link>
+          <li className="logout">
+            <LogoutOutlined />
+            <Link to="/logout">Logout</Link>
+          </li>
+          <li className="addToCart">
+            <ShoppingCartOutlined />
+            <Link to="/ShowCart">Show Cart</Link>
           </li>
         </ul>
-      </div>
-      <div className="content">
-        <h1>Dashboard Content</h1>
-        {/* Place your dashboard content here */}
       </div>
     </div>
   );
