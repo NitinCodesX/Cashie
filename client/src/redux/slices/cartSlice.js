@@ -9,7 +9,9 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.data.push({ item: action.payload, qty: 1 });
+      const idx=state.data.findIndex((et)=>et.item._id===action.payload._id)
+      if(idx<0)
+       state.data.push({ item: action.payload, qty: 1 });
     },
     increaseQty: (state, action) => {
       // console.log("Haaaaaaaaaaaaaaa", state.data[0])

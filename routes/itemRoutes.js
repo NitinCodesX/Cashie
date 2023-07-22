@@ -15,6 +15,6 @@ router.get("/get-item", getItemController);
 router.post("/add-item", addItemController);
 
 // //Meth0d - edit
-// router.put('/edit-item',editItemController)
+router.put('/edit-item',editItemController)
 
 module.exports = router;
