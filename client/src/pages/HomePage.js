@@ -22,6 +22,7 @@ const HomePage = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getAllItems();
   }, []);
@@ -87,7 +88,7 @@ const HomePage = () => {
           <Row gutter={[16, 16]}>
             {itemsData.map((item) => (
               <Col xs={24} lg={6} md={12} sm={6} key={item.id}>
-                <ItemList item={item} />
+                <ItemList item={item} getAllItems={getAllItems} />
               </Col>
             ))}
           </Row>
