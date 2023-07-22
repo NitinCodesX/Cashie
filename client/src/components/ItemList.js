@@ -1,19 +1,18 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/slices/cartSlice";
 import { DeleteOutlined } from "@ant-design/icons";
-import { Row, Col, Button, Modal, Form, Input, Select, message } from "antd";
-import axios from "axios"
+import { Button, Modal, Form, Input, Select, message } from "antd";
+import axios from "axios";
 
 const ItemList = ({ item, getAllItems }) => {
   const [popupModal, setPopupModal] = useState(false);
-  const [editItem,setEditItem]=useState(null);
+  const [editItem, setEditItem] = useState(null);
 
   const imgStyle = {
     height: "15rem",
     width: "15rem",
   };
-
 
   const card = {
     backgroundColor: "#f4f5d5",
@@ -35,13 +34,26 @@ const ItemList = ({ item, getAllItems }) => {
 
   const handleEditSubmit = async (value) => {
     try {
-      const res = await axios.put(
-        "http://localhost:8080/api/items/edit-item",
-        {...value, itemId:editItem._id}
-      );
+      await axios.put("http://localhost:8080/api/items/edit-item", {
+        ...value,
+        itemId: editItem._id,
+      });
       message.success("Item Updated successfully");
       getAllItems();
       setPopupModal(false);
+    } catch (error) {
+      message.error("Something went wrong");
+      console.log(error);
+    }
+  };
+
+  const handleDeleteSubmit = async (id) => {
+    try {
+      await axios.delete("http://localhost:8080/api/items/delete-item", {
+        data: { itemId: id },
+      });
+      message.success("Item Deleted Successfully");
+      getAllItems();
     } catch (error) {
       message.error("Something went wrong");
       console.log(error);
@@ -54,22 +66,33 @@ const ItemList = ({ item, getAllItems }) => {
       <h2 style={{ textAlign: "center", margin: "5px" }}>{item.name}</h2>
       <div style={buttonStyle}>
         <Button onClick={handleShowCart}>Add to cart</Button>
-        <Button onClick={() => {
-          setPopupModal(true);
-          setEditItem(item);
-        }}>Edit</Button>
-        <Button>
+        <Button
+          onClick={() => {
+            setPopupModal(true);
+            setEditItem(item);
+          }}
+        >
+          Edit
+        </Button>
+        <Button
+          onClick={() => {
+            handleDeleteSubmit(item._id);
+          }}
+        >
           <DeleteOutlined />
         </Button>
 
         <Modal
           title="Add new item"
           visible={popupModal}
-
           onCancel={() => setPopupModal(false)}
           footer={false}
         >
-          <Form layout="vertical" initialValues={editItem} onFinish={handleEditSubmit}>
+          <Form
+            layout="vertical"
+            initialValues={editItem}
+            onFinish={handleEditSubmit}
+          >
             <Form.Item name="name" label="Name">
               <Input />
             </Form.Item>
@@ -96,7 +119,7 @@ const ItemList = ({ item, getAllItems }) => {
               </Button>
             </div>
           </Form>
-        </Modal>   
+        </Modal>
       </div>
     </div>
   );

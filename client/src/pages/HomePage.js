@@ -16,7 +16,6 @@ const HomePage = () => {
       const { data } = await axios.get(
         "http://localhost:8080/api/items/get-item"
       );
-      console.log(data);
       setItemsData(data);
     } catch (error) {
       console.log(error);
