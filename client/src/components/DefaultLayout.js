@@ -1,6 +1,6 @@
 import React from "react";
 import "../Styles/DefaultLayout.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   HomeOutlined,
@@ -12,8 +12,12 @@ import {
 } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { increaseQty } from "../redux/slices/cartSlice"; // Import the addToCart action
+import { Button } from "antd";
+import { markLoggedIn } from "../redux/slices/authSlice";
 
 const DefaultLayout = () => {
+  const navigate = useNavigate();
+
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
@@ -56,7 +60,14 @@ const DefaultLayout = () => {
           </li>
           <li className="logout">
             <LogoutOutlined />
-            <Link to="/logout">Logout</Link>
+            <Button
+              onClick={async () => {
+                await dispatch(markLoggedIn(false));
+                navigate("/login");
+              }}
+            >
+              Logout
+            </Button>
           </li>
           <li className="addToCart">
             <ShoppingCartOutlined />
