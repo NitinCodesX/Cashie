@@ -1,30 +1,80 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./redux/store";
-import Items from "./pages/Items"
+import Items from "./pages/Items";
 import DefaultLayout from "./components/DefaultLayout";
 import ShowCartPage from "./pages/ShowCart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import HomePage from "./pages/Items";
+import { markLoggedIn } from "./redux/slices/authSlice";
 function App() {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("auth");
+  const { loggedIn } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!loggedIn && token) {
+      dispatch(markLoggedIn(true));
+    }
+  }, [loggedIn, dispatch, token]);
+
   return (
-    <Provider store={store}>
-      <div style={{ display: "flex" }}>
-        <Router>
-          <DefaultLayout />
-          <div style={{ marginLeft: "220px" }}>
-            <Routes>
-              <Route path="/items" element={<Items/>} />
-              <Route path="/ShowCart" element={<ShowCartPage />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </div>
-        </Router>
-      </div>
-    </Provider>
+    <div style={{ display: "flex" }}>
+      <Router>
+        <DefaultLayout />
+        <div style={{ marginLeft: "220px" }}>
+          <Routes>
+            {loggedIn ? (
+              <>
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <HomePage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/items"
+                  element={
+                    <ProtectedRoute>
+                      <Items />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/ShowCart"
+                  element={
+                    <ProtectedRoute>
+                      <ShowCartPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="*" element={<Navigate replace to="/" />} />
+              </>
+            ) : (
+              <>
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<Navigate replace to="/login" />} />
+              </>
+            )}
+          </Routes>
+        </div>
+      </Router>
+    </div>
   );
 }
 
 export default App;
+export function ProtectedRoute({ children }) {
+  if (localStorage.getItem("auth")) return children;
+  else return <Navigate to="/login" />;
+}

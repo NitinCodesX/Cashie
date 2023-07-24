@@ -23,6 +23,5 @@ const userSchema = mongoose.Schema(
   }
 );
 
-//Items is the collection name
 const Users=mongoose.model('users',userSchema)
 module.exports=Users;

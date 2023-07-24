@@ -1,23 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../index.css";
-import Form from "antd/es/form/Form";
-import Input from "antd/es/input/Input";
-import { Button } from "antd/es/radio";
+import { Button, Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { message } from "antd";
 
 const Register = () => {
   const navigate = useNavigate();
   const handleSubmit = async (value) => {
-    console.log("hiiiii")
+    console.log("hiiiii");
     try {
       await axios.post("http://localhost:8080/api/users/register", value);
       message.success("Registered successfully");
       navigate("/login");
     } catch (error) {
       message.error("Something went wrong");
-
       console.log(error);
     }
   };
@@ -39,14 +35,13 @@ const Register = () => {
             <Form.Item name="password" label="Password">
               <Input type="password" />
             </Form.Item>
-
             <div>
               <p>
                 Already Registered?
                 <Link to="/Login"> Login Here!</Link>
               </p>
               <Button type="primary" htmlType="submit">
-                Register
+                Save
               </Button>
             </div>
           </Form>

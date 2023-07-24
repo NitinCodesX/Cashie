@@ -1,26 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../index.css";
-import Form from "antd/es/form/Form";
-import Input from "antd/es/input/Input";
-import { Button } from "antd/es/radio";
+import { Button, Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { message } from "antd";
+import { markLoggedIn } from "../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleSubmit = async (value) => {
     try {
       const res = await axios.post(
         "http://localhost:8080/api/users/login",
         value
       );
-      console.log(res);
+      dispatch(markLoggedIn(true));
       message.success("login successful");
-      navigate('/')
+      localStorage.setItem("auth", JSON.stringify(res.data));
+      navigate("/");
     } catch (error) {
-      message.error("Something went wrong");
-
+      message.error("Incorrect Credentials");
       console.log(error);
     }
   };
