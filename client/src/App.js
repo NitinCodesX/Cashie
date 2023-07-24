@@ -5,6 +5,8 @@ import store from "./redux/store";
 import Items from "./pages/Items"
 import DefaultLayout from "./components/DefaultLayout";
 import ShowCartPage from "./pages/ShowCart";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 function App() {
   return (
     <Provider store={store}>
@@ -15,6 +17,8 @@ function App() {
             <Routes>
               <Route path="/items" element={<Items/>} />
               <Route path="/ShowCart" element={<ShowCartPage />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </div>
         </Router>

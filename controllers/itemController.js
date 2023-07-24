@@ -2,9 +2,7 @@ const itemModel = require("../models/itemModel");
 
 const getItemController = async (req, res) => {
   try {
-    console.log("1->> ********************");
     const items = await itemModel.find();
-    console.log("2->> ********************");
     res.status(200).send(items);
   } catch (error) {
     console.log(error);
@@ -37,7 +35,6 @@ const editItemController = async (req, res) => {
 
 const deleteItemController= async(req,res)=>{
   try{
-    console.log("hapyyyyyyyyyyyyyyyy")
     const {itemId} = req.body;
     await itemModel.findOneAndDelete({_id:itemId});
     res.status(201).json("item Delete");
