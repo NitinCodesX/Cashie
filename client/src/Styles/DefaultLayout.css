@@ -64,6 +64,9 @@ li a {
 
 .logout button {
   margin-left: 15px;
+  background-color: burlywood;
+  text-decoration: underline;
+  border: none;
 }
 
 .content {

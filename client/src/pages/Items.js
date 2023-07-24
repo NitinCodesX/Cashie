@@ -66,7 +66,7 @@ const HomePage = () => {
       style={{
         marginTop: "80px",
         border: "2px solid black",
-        width: "89vw",
+        width: "86vw",
       }}
     >
       <div

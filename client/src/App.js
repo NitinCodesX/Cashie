@@ -33,30 +33,9 @@ function App() {
           <Routes>
             {loggedIn ? (
               <>
-                <Route
-                  path="/"
-                  element={
-                    <ProtectedRoute>
-                      <HomePage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/items"
-                  element={
-                    <ProtectedRoute>
-                      <Items />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/ShowCart"
-                  element={
-                    <ProtectedRoute>
-                      <ShowCartPage />
-                    </ProtectedRoute>
-                  }
-                />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/items" element={<Items />} />
+                <Route path="/ShowCart" element={<ShowCartPage />} />
                 <Route path="*" element={<Navigate replace to="/" />} />
               </>
             ) : (
@@ -74,7 +53,3 @@ function App() {
 }
 
 export default App;
-export function ProtectedRoute({ children }) {
-  if (localStorage.getItem("auth")) return children;
-  else return <Navigate to="/login" />;
-}

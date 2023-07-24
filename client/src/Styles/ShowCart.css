@@ -23,3 +23,14 @@
 flex-direction: column;
 
 }
+
+.totalPrice{
+  display: flex;
+  justify-content:space-between;
+  width: 30vw;
+}
+
+.invoice{
+  display: flex;
+
+}

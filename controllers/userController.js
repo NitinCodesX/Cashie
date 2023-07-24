@@ -5,7 +5,7 @@ const loginController = async (req, res) => {
     const { userId, password } = req.body;
     const user = await userModel.findOne({ userId, password, verified: true });
     if (user) {
-      res.status(200).send("Login success");
+      res.status(200).send({userId:userId, message:"Login Success"});
     } else {
       res.status(400).json({
         message: "Login failed",
