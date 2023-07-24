@@ -9,6 +9,7 @@ const backgroundColor = "#d4bd7d";
 const HomePage = () => {
   const [itemsData, setItemsData] = useState([]);
   const [popupModal, setPopupModal] = useState(false);
+  const [selectedCategory, setSelectedCategory]=useState([]);
   // const [editItem,setEditItem]=useState(null)
 
   const getAllItems = async () => {
