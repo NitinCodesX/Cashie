@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { useSelector } from "react-redux"; // Import the useSelector hooks
 import "../Styles/ShowCart.css";
 import axios from "axios"
 import { Button, Modal, Form, Input, Select, message } from "antd";
 import CartItem from "../components/CartItem";
-import { Footer } from "antd/es/layout/layout";
 import {useNavigate} from "react-router-dom"
 const ShowCartPage = () => { 
   const [billPopup, setBillPopup]=useState(false);
@@ -69,7 +68,7 @@ const ShowCartPage = () => {
               Total: <b>$ {totalPrice}</b>
             </h2>
           </div>
-          <div className="d-flex justifu-content-end">
+          <div className="d-flex justify-content-end">
             <Button type="primary" htmlType="submit">
               Generate Bill
             </Button>

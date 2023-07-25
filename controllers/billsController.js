@@ -1,5 +1,16 @@
 const billsModel = require("../models/billsModel");
 
+
+const getBillsController = async (req, res) => {
+  try {
+    const bills = await billsModel.find();
+    res.send(bills);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 const addBillsController = async (req, res) => {
   try {
     //creating new Item
@@ -14,4 +25,4 @@ const addBillsController = async (req, res) => {
 };
 
 
-module.exports = { addBillsController };
+module.exports = { getBillsController,addBillsController };

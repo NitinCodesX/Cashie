@@ -14,6 +14,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HomePage from "./pages/Items";
 import { markLoggedIn } from "./redux/slices/authSlice";
+import BillsPage from "./pages/BillsPage";
+import CustomerPage from "./pages/CustomerPage";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("auth");
@@ -36,6 +38,8 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/items" element={<Items />} />
                 <Route path="/ShowCart" element={<ShowCartPage />} />
+                <Route path="/bills" element={<BillsPage />} />
+                <Route path="/customers" element={<CustomerPage />} />
                 <Route path="*" element={<Navigate replace to="/" />} />
               </>
             ) : (
