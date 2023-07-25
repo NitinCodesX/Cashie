@@ -1,5 +1,7 @@
 /* BeautifulTable.css */
-
+.modal{
+  text-align: center;
+}
 .table-container {
     margin: 20px auto;
     max-width: 800px;
@@ -51,3 +53,69 @@
   .actionEye{
     cursor: pointer;
   }
+
+  /* table */
+
+  /* Styles for the table */
+table {
+  margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+}
+
+thead {
+  background-color: #f9f9f9;
+}
+
+th {
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+/* Alternating row colors */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Add some spacing between table cells */
+td + td {
+  padding-left: 20px;
+}
+
+/* Add a border between table cells */
+td {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+/* Apply some font styling */
+th, td {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/* Center text in the first column (Name) */
+td:first-child {
+  text-align: center;
+}
+
+.totalPrice{
+  font-size: 1.25rem;
+  margin: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+  font-weight: 800;
+}

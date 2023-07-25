@@ -5,7 +5,6 @@ import "../Styles/BillsPage.css";
 import { EyeOutlined } from "@ant-design/icons";
 const BillsPage = () => {
   const [billsData, setBillsData] = useState(null);
-
   const [popupModal, setPopupModal] = useState(false);
   const [selectedBill, setSelectedBill] = useState(null);
 
@@ -22,7 +21,6 @@ const BillsPage = () => {
   useEffect(() => {
     getAllBills();
   }, []);
-  console.log(billsData);
   return (
     <div className="table-container">
       <table className="custom-table">
@@ -43,7 +41,7 @@ const BillsPage = () => {
               <td>{item.customerNumber}</td>
               <td>{item.totalPrice}</td>
               <td>{item.paymentMode}</td>
-              <td>{item.ItemsInCart.map((i)=>i.name).toString()}</td>
+              <td>{item.ItemsInCart.map((i) => i.name).toString()}</td>
               <td>
                 <EyeOutlined
                   className="actionEye"
@@ -57,40 +55,52 @@ const BillsPage = () => {
           ))}
         </tbody>
       </table>
-      {console.log(selectedBill)}
       <Modal
+        className="modal"
         title="Invoice Details"
         visible={popupModal}
         onCancel={() => setPopupModal(false)}
         footer={false}
       >
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDaWosONS_6N1ISdAzWgl2aBLfIu33rmH_eA&usqp=CAU" alt="error"/>
-        <h1>CASHIE</h1>
+        <img
+          src="https://www.pngitem.com/pimgs/m/178-1783030_online-shopping-logo-png-transparent-png.png"
+          alt="error"
+          height="100px"
+        />
+        <h1 style={{ marginTop: "0px" }}>CASHIE</h1>
         <p>Contact: 123456 | Gandhinagar Gujurat</p>
         <div>Customer Name: {selectedBill?.customerName}</div>
-				<div>Phone No.: {selectedBill?.customerNumber}</div>
+        <div>Phone No.: {selectedBill?.customerNumber}</div>
         <table>
-        <thead>
-          <tr>
-            <th>Items</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>  
-          {
-            selectedBill?.ItemsInCart?.map((item) => {
-             return  <tr>
-              <td>{item.name}</td>
-              <td>{item.qty}</td>
-              <td>{item.price}</td>
-              <td>{`${item.qty*item.price}`}</td>
+          <thead>
+            <tr>
+              <th>Items</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
             </tr>
-          })
-          }
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {selectedBill?.ItemsInCart?.map((item) => {
+              return (
+                <tr>
+                  <td>{item.name}</td>
+                  <td>{item.qty}</td>
+                  <td>${item.price}</td>
+                  <td>{`$${item.qty * item.price}`}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <div className="totalPrice">
+          Total Price: ${selectedBill?.totalPrice}
+        </div>
+        <div>
+          <strong>Thank you for shopping with us! </strong>
+          Please note this is non refundable amount.
+          <strong> Have a nice day!</strong>
+        </div>
       </Modal>
     </div>
   );
