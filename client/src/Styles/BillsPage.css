@@ -2,6 +2,11 @@
 .modal{
   text-align: center;
 }
+.print{
+  padding:20px;
+  background-color: #f4ebeb;
+  box-shadow: 1px 1px 2px #d3d3d3;
+}
 .table-container {
     margin: 20px auto;
     max-width: 800px;

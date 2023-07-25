@@ -62,6 +62,7 @@ const BillsPage = () => {
         onCancel={() => setPopupModal(false)}
         footer={false}
       >
+      <div className="print">
         <img
           src="https://www.pngitem.com/pimgs/m/178-1783030_online-shopping-logo-png-transparent-png.png"
           alt="error"
@@ -100,6 +101,7 @@ const BillsPage = () => {
           <strong>Thank you for shopping with us! </strong>
           Please note this is non refundable amount.
           <strong> Have a nice day!</strong>
+        </div>
         </div>
       </Modal>
     </div>
