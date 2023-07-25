@@ -1,12 +1,14 @@
 import React, {useState} from "react";
-import { useSelector } from "react-redux"; // Import the useSelector hooks
+import { useDispatch, useSelector } from "react-redux"; // Import the useSelector hooks
 import "../Styles/ShowCart.css";
 import axios from "axios"
 import { Button, Modal, Form, Input, Select, message } from "antd";
 import CartItem from "../components/CartItem";
 import {useNavigate} from "react-router-dom"
+import { emptyCart } from "../redux/slices/cartSlice";
 const ShowCartPage = () =>{ 
   const [billPopup, setBillPopup]=useState(false);
+  const dispatch = useDispatch()
   const { data, totalPrice} = useSelector((state) => state.cart); // Access cart items from the Redux store
   const cartItems=data.map((single)=>{
     return {
@@ -30,7 +32,9 @@ const ShowCartPage = () =>{
       }
       console.log(newObject)
       await axios.post('http://localhost:8080/api/bills/add-bills', newObject)
+
       message.success("Bill generate")
+      dispatch(emptyCart())
       navigate('/bills')
     } catch (error) {
       console.log("Something went wrong")
@@ -38,7 +42,7 @@ const ShowCartPage = () =>{
   }
   return (
     <div className="itemWrapper">
-      <h1>Cart Items</h1>
+      <h1>Cart Items</h1> 
       {data.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (

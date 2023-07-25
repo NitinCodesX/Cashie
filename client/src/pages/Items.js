@@ -7,6 +7,7 @@ import ItemList from "../components/ItemList";
 const backgroundColor = "#d4bd7d";
 
 const HomePage = () => {
+  const [form] = Form.useForm();
   const [itemsData, setItemsData] = useState([]);
   const [popupModal, setPopupModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("drinks");
@@ -53,6 +54,7 @@ const HomePage = () => {
       );
       console.log(res);
       message.success("Item added successfully");
+      form.resetFields();
       getAllItems();
     } catch (error) {
       message.error("Something went wrong");
@@ -124,7 +126,7 @@ const HomePage = () => {
         onCancel={() => setPopupModal(false)}
         footer={false}
       >
-        <Form layout="vertical" onFinish={handleSubmit}>
+        <Form layout="vertical" form={form} onFinish={handleSubmit}>
           <Form.Item name="name" label="Name">
             <Input />
           </Form.Item>
