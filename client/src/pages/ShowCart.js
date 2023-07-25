@@ -1,21 +1,30 @@
 import React, {useState, useEffect} from "react";
 import { useSelector } from "react-redux"; // Import the useSelector hooks
 import "../Styles/ShowCart.css";
-
-import { Row, Col, Button, Modal, Form, Input, Select, message } from "antd";
+import axios from "axios"
+import { Button, Modal, Form, Input, Select, message } from "antd";
 import CartItem from "../components/CartItem";
 import { Footer } from "antd/es/layout/layout";
-
+import {useNavigate} from "react-router-dom"
 const ShowCartPage = () => { 
   const [billPopup, setBillPopup]=useState(false);
   const { data, totalPrice} = useSelector((state) => state.cart); // Access cart items from the Redux store
-
-  const handleSubmit=(value)=>{
-    console.log(localStorage.getItem("auth"))
-    const newObject={
-      ...value,totalPrice
+  const cartItems=data.map((single)=>{
+    return single.item;
+  })
+  const navigate = useNavigate()
+  const handleSubmit=async(value)=>{
+    try {     
+      const newObject={
+        ...value,totalPrice,cartItems
+      }
+      console.log(newObject)
+      await axios.post('http://localhost:8080/api/bills/add-bills', newObject)
+      message.success("Bill generate")
+      navigate('/bills')
+    } catch (error) {
+      console.log("Something went wrong")
     }
-    console.log(newObject)
   }
 
   return (
@@ -42,7 +51,7 @@ const ShowCartPage = () => {
           <Form.Item name="customerName" label="Customer Name">
             <Input />
           </Form.Item>
-          <Form.Item name="customerContact" label="Contact Number">
+          <Form.Item name="customerNumber" label="Contact Number">
             <Input />
           </Form.Item>
           <Form.Item

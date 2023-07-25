@@ -9,7 +9,7 @@ const billSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    totalAmount: {
+    totalPrice: {
       type: Number,
       required: true,
     },
@@ -17,6 +17,10 @@ const billSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    cartItems:{
+      type:Array,
+      required:true
+    }
   },
   {
     timestamp: true, //Timestamps save the current time of the document created and also when it was updated in form of a Date by turning it true

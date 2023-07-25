@@ -7,6 +7,4 @@ const router = express.Router();
 
 router.post("/add-bills", addBillsController);
 
-
-
 module.exports = router;

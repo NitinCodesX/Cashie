@@ -6,12 +6,12 @@ const addBillsController = async (req, res) => {
     const newBill = new billsModel(req.body);
     //Waiting to save the itemm
     await newBill.save(); //new Item is the instance, it is saving the reference for itemModel, so it will be saved accordingly
-    res.status(201).send("Bill generated successfully");
+    res.send("Bill generated successfully");
   } catch (error) {
-    res.status(401).send(error);
+    res.send(error);
     console.log(error);
   }
 };
 
 
-module.exports = { addBillsController};
+module.exports = { addBillsController };
