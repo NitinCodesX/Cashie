@@ -17,7 +17,7 @@ const billSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    cartItems:{
+    ItemsInCart:{
       type:Array,
       required:true
     }

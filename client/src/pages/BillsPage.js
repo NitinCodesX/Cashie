@@ -1,17 +1,13 @@
 import { Modal, Space, Table, Tag } from "antd";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import CartItem from "../components/CartItem";
 import "../Styles/BillsPage.css";
 import { EyeOutlined } from "@ant-design/icons";
 const BillsPage = () => {
-  const navigate = useNavigate();
-  const [billsData, setBillsData] = useState([]);
+  const [billsData, setBillsData] = useState(null);
 
   const [popupModal, setPopupModal] = useState(false);
-  const [selectedBill, setSelectedBill] = useState([]);
+  const [selectedBill, setSelectedBill] = useState(null);
 
   const getAllBills = async () => {
     try {
@@ -27,7 +23,6 @@ const BillsPage = () => {
     getAllBills();
   }, []);
   console.log(billsData);
-
   return (
     <div className="table-container">
       <table className="custom-table">
@@ -42,13 +37,13 @@ const BillsPage = () => {
           </tr>
         </thead>
         <tbody>
-          {billsData.map((item) => (
+          {billsData?.map((item) => (
             <tr>
               <td>{item.customerName}</td>
               <td>{item.customerNumber}</td>
               <td>{item.totalPrice}</td>
               <td>{item.paymentMode}</td>
-              <td>{item.cartItems.map((i) => i.name).toString()}</td>
+              <td>{item.ItemsInCart.map((i)=>i.name).toString()}</td>
               <td>
                 <EyeOutlined
                   className="actionEye"
@@ -72,26 +67,28 @@ const BillsPage = () => {
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDaWosONS_6N1ISdAzWgl2aBLfIu33rmH_eA&usqp=CAU" alt="error"/>
         <h1>CASHIE</h1>
         <p>Contact: 123456 | Gandhinagar Gujurat</p>
-        <div>Customer Name: {selectedBill.customerName}</div>
-				<div>Phone No.: {selectedBill.customerNumber}</div>
+        <div>Customer Name: {selectedBill?.customerName}</div>
+				<div>Phone No.: {selectedBill?.customerNumber}</div>
         <table>
         <thead>
           <tr>
             <th>Items</th>
             <th>Quantity</th>
-            <th>Payment Mode</th>
+            <th>Price</th>
             <th>Total</th>
           </tr>
         </thead>
-        <tbody>
-          {billsData.map((item) => (
-            <tr>
-              <td>{item.cartItems.map((i) => i.name).toString()}</td>
-              <td></td>
-              <td>{item.paymentMode}</td>
-              <td>{item.totalPrice}</td>
+        <tbody>  
+          {
+            selectedBill?.ItemsInCart?.map((item) => {
+             return  <tr>
+              <td>{item.name}</td>
+              <td>{item.qty}</td>
+              <td>{item.price}</td>
+              <td>{`${item.qty*item.price}`}</td>
             </tr>
-          ))}
+          })
+          }
         </tbody>
       </table>
       </Modal>

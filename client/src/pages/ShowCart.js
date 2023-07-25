@@ -5,17 +5,28 @@ import axios from "axios"
 import { Button, Modal, Form, Input, Select, message } from "antd";
 import CartItem from "../components/CartItem";
 import {useNavigate} from "react-router-dom"
-const ShowCartPage = () => { 
+const ShowCartPage = () =>{ 
   const [billPopup, setBillPopup]=useState(false);
   const { data, totalPrice} = useSelector((state) => state.cart); // Access cart items from the Redux store
   const cartItems=data.map((single)=>{
-    return single.item;
+    return {
+      item:single.item,
+      qty:single.qty
+    }
   })
+  const ItemsInCart=cartItems.map((cartItem)=>{
+     return {
+        "name":cartItem.item.name,
+        "qty":cartItem.qty,
+        "price":cartItem.item.price
+     }
+  })
+  console.log(ItemsInCart);
   const navigate = useNavigate()
   const handleSubmit=async(value)=>{
     try {     
       const newObject={
-        ...value,totalPrice,cartItems
+        ...value,totalPrice,ItemsInCart
       }
       console.log(newObject)
       await axios.post('http://localhost:8080/api/bills/add-bills', newObject)
@@ -25,7 +36,6 @@ const ShowCartPage = () => {
       console.log("Something went wrong")
     }
   }
-
   return (
     <div className="itemWrapper">
       <h1>Cart Items</h1>
