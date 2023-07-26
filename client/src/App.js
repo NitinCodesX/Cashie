@@ -12,7 +12,7 @@ import DefaultLayout from "./components/DefaultLayout";
 import ShowCartPage from "./pages/ShowCart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import HomePage from "./pages/Items";
+import HomePage from "./pages/HomePage";
 import { markLoggedIn } from "./redux/slices/authSlice";
 import BillsPage from "./pages/BillsPage";
 import CustomerPage from "./pages/CustomerPage";
@@ -35,7 +35,7 @@ function App() {
           <Routes>
             {loggedIn ? (
               <>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<HomePage/>} />
                 <Route path="/items" element={<Items />} />
                 <Route path="/ShowCart" element={<ShowCartPage />} />
                 <Route path="/bills" element={<BillsPage />} />

@@ -13,8 +13,6 @@ const BillsPage = () => {
 	const componentRef = useRef();
 
   const getAllBills = async () => {
-
-		
     try {
       const { data } = await axios.get(
         "http://localhost:8080/api/bills/get-bills"
@@ -39,9 +37,10 @@ const BillsPage = () => {
           <tr>
             <th>Customer Name</th>
             <th>Customer Number</th>
-            <th>Total Price</th>
+            <th>Total Bill</th>
             <th>Payment Mode</th>
             <th>Items Bought</th>
+            <th>Date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -50,9 +49,10 @@ const BillsPage = () => {
             <tr>
               <td>{item.customerName}</td>
               <td>{item.customerNumber}</td>
-              <td>{item.totalPrice}</td>
+              <td>$ {item.totalPrice}</td>
               <td>{item.paymentMode}</td>
               <td>{item.ItemsInCart.map((i) => i.name).toString()}</td>
+              <td>{new Date(item.date).toLocaleString()}</td>
               <td>
                 <EyeOutlined
                   className="actionEye"

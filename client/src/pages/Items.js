@@ -27,8 +27,19 @@ const HomePage = () => {
       imageURL:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0HehLCQnqdRL7zvEwmJapS5Vr6OifYVFN1A&usqp=CAU",
     },
+    {
+      name: "french",
+      imageURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJrpFdlzpsAApcIKhEpKIiBqNeiJvgWydnYg&usqp=CAU"
+    },
+    {
+      name: "burger",
+      imageURL:"https://img.freepik.com/free-photo/double-hamburger-isolated-white-background-fresh-burger-fast-food-with-beef-cream-cheese_90220-1192.jpg?w=2000"
+    },
+    {
+      name: "pizza",
+      imageURL:"https://imgmedia.lbb.in/media/2020/11/5fa17943d511fc4b649fcfc2_1604417859096.jpg"
+    }
   ];
-  // const [editItem,setEditItem]=useState(null)
 
   const getAllItems = async () => {
     try {
@@ -101,6 +112,7 @@ const HomePage = () => {
             >
               <h4>{category.name}</h4>
               <img
+                className="imageCat"
                 src={category.imageURL}
                 alt={category.name}
                 height="60"
@@ -109,9 +121,8 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-        <Row gutter={[16, 16]} className="item">
-          {console.log(selectedCategory)}
-          {itemsData
+        <Row gutter={[16, 16]} className="ite m">
+          {itemsData 
             .filter((i) => i.category === selectedCategory)
             .map((item) => (
               <Col xs={24} lg={6} md={12} sm={6} key={item.id}>
@@ -145,6 +156,9 @@ const HomePage = () => {
               <Select.Option value="drinks">Drinks</Select.Option>
               <Select.Option value="rice">Rice</Select.Option>
               <Select.Option value="noodles">Noodels</Select.Option>
+              <Select.Option value="french">French</Select.Option>
+              <Select.Option value="pizza">Pizza</Select.Option>
+              <Select.Option value="burger">Burger</Select.Option>
             </Select>
           </Form.Item>
           <div className="d-flex justifu-content-end">

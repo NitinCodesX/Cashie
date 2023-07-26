@@ -44,7 +44,7 @@ const DefaultLayout = () => {
         <ul>
           <li>
             <HomeOutlined />
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
             <PaperClipOutlined />
