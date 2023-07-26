@@ -12,7 +12,9 @@
     width: 28vw;
     color: #fff;
   }
-  
+  .bigCard{
+    background-color: #E7DDF5;
+  }
   .card:nth-child(1) {
     background: linear-gradient(135deg, #84a1ff, #b084e8); 
   }
