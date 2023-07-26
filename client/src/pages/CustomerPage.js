@@ -1,6 +1,6 @@
-
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
+import "../Styles/Customers.css"
 
 const CustomerPage = () => {
 
@@ -25,8 +25,8 @@ const CustomerPage = () => {
   }, []);
   
   return (
-    <div>
-    <table className="custom-table">
+    <div className="custom-table">
+    <table>
     <thead>
       <tr>
         <th>Customer Name</th>
