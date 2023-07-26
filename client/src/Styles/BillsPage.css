@@ -2,11 +2,21 @@
 .modal{
   text-align: center;
 }
+<<<<<<< HEAD
 .print{
   padding:20px;
   background-color: #f4ebeb;
   box-shadow: 1px 1px 2px #d3d3d3;
 }
+=======
+
+.print{
+  box-shadow: 1px 1px 2px #D3D3D3;
+  background-color: aliceblue;
+  padding: 20px;
+}
+
+>>>>>>> nitin-dev
 .table-container {
     margin: 20px auto;
     max-width: 800px;
@@ -123,4 +133,9 @@ td:first-child {
   justify-content: end;
   margin-top: 10px;
   font-weight: 800;
+}
+
+.printButton{
+  margin-top: 10px;
+  text-align: right;
 }

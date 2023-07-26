@@ -1,12 +1,16 @@
-import { Modal, Space, Table, Tag } from "antd";
+import { Button, Modal} from "antd";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import ReactToPrint from 'react-to-print';
+import { useReactToPrint } from 'react-to-print';
 import "../Styles/BillsPage.css";
 import { EyeOutlined } from "@ant-design/icons";
 const BillsPage = () => {
   const [billsData, setBillsData] = useState(null);
   const [popupModal, setPopupModal] = useState(false);
   const [selectedBill, setSelectedBill] = useState(null);
+	
+	const componentRef = useRef();
 
   const getAllBills = async () => {
     try {
@@ -21,6 +25,11 @@ const BillsPage = () => {
   useEffect(() => {
     getAllBills();
   }, []);
+
+	const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <div className="table-container">
       <table className="custom-table">
@@ -28,9 +37,10 @@ const BillsPage = () => {
           <tr>
             <th>Customer Name</th>
             <th>Customer Number</th>
-            <th>Total Price</th>
+            <th>Total Bill</th>
             <th>Payment Mode</th>
             <th>Items Bought</th>
+            <th>Date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -39,9 +49,10 @@ const BillsPage = () => {
             <tr>
               <td>{item.customerName}</td>
               <td>{item.customerNumber}</td>
-              <td>{item.totalPrice}</td>
+              <td>$ {item.totalPrice}</td>
               <td>{item.paymentMode}</td>
               <td>{item.ItemsInCart.map((i) => i.name).toString()}</td>
+              <td>{new Date(item.date).toLocaleString()}</td>
               <td>
                 <EyeOutlined
                   className="actionEye"
@@ -62,7 +73,11 @@ const BillsPage = () => {
         onCancel={() => setPopupModal(false)}
         footer={false}
       >
+<<<<<<< HEAD
       <div className="print">
+=======
+			<div className="print" ref={componentRef}>
+>>>>>>> nitin-dev
         <img
           src="https://www.pngitem.com/pimgs/m/178-1783030_online-shopping-logo-png-transparent-png.png"
           alt="error"
@@ -102,7 +117,16 @@ const BillsPage = () => {
           Please note this is non refundable amount.
           <strong> Have a nice day!</strong>
         </div>
+<<<<<<< HEAD
         </div>
+=======
+				</div>
+
+				<div>
+				<Button className="printButton" type="primary" onClick={handlePrint}>Print</Button>
+				</div>
+				
+>>>>>>> nitin-dev
       </Modal>
     </div>
   );
