@@ -71,10 +71,14 @@ const ShowCartPage = () => {
         footer={false}
       >
         <Form layout="vertical" onFinish={handleSubmit}>
-          <Form.Item name="customerName" label="Customer Name">
+          <Form.Item name="customerName" label="Customer Name" rules={[
+              { required: true, message: "Please Write the customer Name" },
+            ]}>
             <Input />
           </Form.Item>
-          <Form.Item name="customerNumber" label="Contact Number">
+          <Form.Item name="customerNumber" label="Contact Number" rules={[
+              { required: true, message: "Please Type the contact No." },
+            ]}>
             <Input />
           </Form.Item>
           <Form.Item
