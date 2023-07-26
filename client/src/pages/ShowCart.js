@@ -76,10 +76,10 @@ const ShowCartPage = () => {
         <Form layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             name="customerName"
-            label="Customer Name" rules={[
+            label="Customer Name"
+            rules={[
               { required: true, message: "Please Write the customer Name" },
             ]}
-            rules={[{ required: true, message: "Please type customer name" }]}
           >
             <Input />
           </Form.Item>
