@@ -20,10 +20,14 @@ const billSchema = mongoose.Schema(
     ItemsInCart:{
       type:Array,
       required:true
+    },
+    date:{
+      type:Date,
+      required:true
     }
   },
   {
-    timestamp: true, //Timestamps save the current time of the document created and also when it was updated in form of a Date by turning it true
+    timestamp: true,
   }
 );
 

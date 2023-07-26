@@ -24,11 +24,13 @@ const ShowCartPage = () => {
   console.log(ItemsInCart);
   const navigate = useNavigate();
   const handleSubmit = async (value) => {
+    const date = new Date();
     try {
       const newObject = {
         ...value,
         totalPrice,
         ItemsInCart,
+        date
       };
       console.log(newObject);
       await axios.post("http://localhost:8080/api/bills/add-bills", newObject);
@@ -68,7 +70,7 @@ const ShowCartPage = () => {
         onCancel={() => setBillPopup(false)}
         footer={false}
       >
-        <Form layout="vertical" onFin ish={handleSubmit}>
+        <Form layout="vertical" onFinish={handleSubmit}>
           <Form.Item name="customerName" label="Customer Name">
             <Input />
           </Form.Item>
