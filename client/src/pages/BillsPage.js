@@ -1,8 +1,8 @@
-import { Button, Modal} from "antd";
+import { Button, Modal } from "antd";
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
-import ReactToPrint from 'react-to-print';
-import { useReactToPrint } from 'react-to-print';
+import ReactToPrint from "react-to-print";
+import { useReactToPrint } from "react-to-print";
 import "../Styles/BillsPage.css";
 import { EyeOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
@@ -70,53 +70,56 @@ const BillsPage = () => {
         onCancel={() => setPopupModal(false)}
         footer={false}
       >
-      <div className="print" ref={componentRef}>
-			<div className="print" ref={componentRef}>
-        <img
-          src="https://www.pngitem.com/pimgs/m/178-1783030_online-shopping-logo-png-transparent-png.png"
-          alt="error"
-          height="100px"
-        />
-        <h1 style={{ marginTop: "0px" }}>CASHIE</h1>
-        <p>Contact: 123456 | Gandhinagar Gujurat</p>
-        <div>Customer Name: {selectedBill?.customerName}</div>
-        <div>Phone No.: {selectedBill?.customerNumber}</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Items</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {selectedBill?.ItemsInCart?.map((item) => {
-              return (
-                <tr>
-                  <td>{item.name}</td>
-                  <td>{item.qty}</td>
-                  <td>${item.price}</td>
-                  <td>{`$${item.qty * item.price}`}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <div className="totalPrice">
-          Total Price: ${selectedBill?.totalPrice}
+        <div className="print" ref={componentRef}>
+          <img
+            src="https://www.pngitem.com/pimgs/m/178-1783030_online-shopping-logo-png-transparent-png.png"
+            alt="error"
+            height="100px"
+          />
+          <h1 style={{ marginTop: "0px" }}>CASHIE</h1>
+          <p>Contact: 123456 | Gandhinagar Gujurat</p>
+          <div>Customer Name: {selectedBill?.customerName}</div>
+          <div>Phone No.: {selectedBill?.customerNumber}</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Items</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {selectedBill?.ItemsInCart?.map((item) => {
+                return (
+                  <tr>
+                    <td>{item.name}</td>
+                    <td>{item.qty}</td>
+                    <td>${item.price}</td>
+                    <td>{`$${item.qty * item.price}`}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <div className="totalPrice">
+            Total Price: ${selectedBill?.totalPrice}
+          </div>
+          <div>
+            <strong>Thank you for shopping with us! </strong>
+            Please note this is non refundable amount.
+            <strong> Have a nice day!</strong>
+          </div>
         </div>
         <div>
-          <strong>Thank you for shopping with us! </strong>
-          Please note this is non refundable amount.
-          <strong> Have a nice day!</strong>
-        </div>
-        </div>
-        <div>
-        <Button className="printButton" type="primary" onClick={handlePrint}>Print</Button>
+          <Button className="printButton" type="primary" onClick={handlePrint}>
+            Print
+          </Button>
         </div>
         <div>
-        <Button className="printButton" type="primary" onClick={handlePrint}>Print</Button>
+          <Button className="printButton" type="primary" onClick={handlePrint}>
+            Print
+          </Button>
         </div>
       </Modal>
     </div>
