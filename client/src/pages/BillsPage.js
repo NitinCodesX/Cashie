@@ -71,6 +71,7 @@ const BillsPage = () => {
         footer={false}
       >
       <div className="print" ref={componentRef}>
+			<div className="print" ref={componentRef}>
         <img
           src="https://www.pngitem.com/pimgs/m/178-1783030_online-shopping-logo-png-transparent-png.png"
           alt="error"
