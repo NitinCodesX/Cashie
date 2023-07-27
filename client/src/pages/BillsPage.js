@@ -116,11 +116,6 @@ const BillsPage = () => {
             Print
           </Button>
         </div>
-        <div>
-          <Button className="printButton" type="primary" onClick={handlePrint}>
-            Print
-          </Button>
-        </div>
       </Modal>
     </div>
   );
