@@ -5,11 +5,11 @@ import ReactToPrint from 'react-to-print';
 import { useReactToPrint } from 'react-to-print';
 import "../Styles/BillsPage.css";
 import { EyeOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
 const BillsPage = () => {
   const [billsData, setBillsData] = useState(null);
   const [popupModal, setPopupModal] = useState(false);
   const [selectedBill, setSelectedBill] = useState(null);
-	
 	const componentRef = useRef();
 
   const getAllBills = async () => {

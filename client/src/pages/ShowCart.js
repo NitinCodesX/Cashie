@@ -6,6 +6,7 @@ import { Button, Modal, Form, Input, Select, message } from "antd";
 import CartItem from "../components/CartItem";
 import { useNavigate } from "react-router-dom";
 import { emptyCart } from "../redux/slices/cartSlice";
+
 const ShowCartPage = () => {
   const [billPopup, setBillPopup] = useState(false);
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const ShowCartPage = () => {
       name: cartItem.item.name,
       qty: cartItem.qty,
       price: cartItem.item.price,
+      category: cartItem.item.category,
     };
   });
   console.log(ItemsInCart);
@@ -34,10 +36,11 @@ const ShowCartPage = () => {
         ItemsInCart,
         date,
       };
-      console.log(newObject);
+      console.log(`new object: `, newObject);
       await axios.post("http://localhost:8080/api/bills/add-bills", newObject);
       message.success("Bill generate");
       dispatch(emptyCart());
+
       navigate("/bills");
     } catch (error) {
       console.log("Something went wrong");
