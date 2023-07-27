@@ -4,7 +4,7 @@ import { Row, Col, Button, Modal, Form, Input, Select, message } from "antd";
 import "../Styles/Items.css";
 import ItemList from "../components/ItemList";
 
-const backgroundColor = "#d4bd7d";
+const backgroundColor = "#F8F1F9";
 
 const HomePage = () => {
   const [form] = Form.useForm();
@@ -29,16 +29,19 @@ const HomePage = () => {
     },
     {
       name: "french",
-      imageURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJrpFdlzpsAApcIKhEpKIiBqNeiJvgWydnYg&usqp=CAU"
+      imageURL:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJrpFdlzpsAApcIKhEpKIiBqNeiJvgWydnYg&usqp=CAU",
     },
     {
       name: "burger",
-      imageURL:"https://img.freepik.com/free-photo/double-hamburger-isolated-white-background-fresh-burger-fast-food-with-beef-cream-cheese_90220-1192.jpg?w=2000"
+      imageURL:
+        "https://img.freepik.com/free-photo/double-hamburger-isolated-white-background-fresh-burger-fast-food-with-beef-cream-cheese_90220-1192.jpg?w=2000",
     },
     {
       name: "pizza",
-      imageURL:"https://imgmedia.lbb.in/media/2020/11/5fa17943d511fc4b649fcfc2_1604417859096.jpg"
-    }
+      imageURL:
+        "https://imgmedia.lbb.in/media/2020/11/5fa17943d511fc4b649fcfc2_1604417859096.jpg",
+    },
   ];
 
   const getAllItems = async () => {
@@ -77,9 +80,9 @@ const HomePage = () => {
   return (
     <div
       style={{
-        marginTop: "80px",
-        border: "2px solid black",
+        marginTop: "20px",
         width: "86vw",
+        background: backgroundColor,
       }}
     >
       <div
@@ -90,8 +93,23 @@ const HomePage = () => {
           justifyContent: "space-between",
         }}
       >
-        <h1>Item List</h1>
-        <Button className="button" onClick={() => setPopupModal(true)}>
+        <h1
+          style={{
+            fontSize: "45px",
+          }}
+        >
+          ITEM LIST
+        </h1>
+        <Button
+          className="button"
+          style={{
+            height: "50px",
+            width: "100px",
+            fontSize: "20px",
+            borderRadius: "20px",
+          }}
+          onClick={() => setPopupModal(true)}
+        >
           Add
         </Button>
       </div>
@@ -121,8 +139,8 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-        <Row gutter={[16, 16]} className="ite m">
-          {itemsData 
+        <Row gutter={[16, 16]} className="item">
+          {itemsData
             .filter((i) => i.category === selectedCategory)
             .map((item) => (
               <Col xs={24} lg={6} md={12} sm={6} key={item.id}>

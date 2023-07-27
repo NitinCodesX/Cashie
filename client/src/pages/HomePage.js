@@ -80,7 +80,7 @@ const HomePage = () => {
         </Card>
         <Card className="card" bordered={false}>
           <div className="card-title">Income</div>
-          <div className="card-content">{total}</div>
+          <div className="card-content">$ {total}</div>
         </Card>
         <Card className="card" bordered={false}>
           <div className="card-title">Products</div>
@@ -131,7 +131,7 @@ const HomePage = () => {
           </div>
         </Card>
         <Card className="bigCard" bordered={false}>
-          <div className="big-card-title">Recent Transactions</div>
+          <div className="big-card-title">Sales Analysis</div>
           <div className="big-card-content">
             <div>
               {categoryCounts && Object.keys(categoryCounts).length > 0 && (
@@ -141,6 +141,7 @@ const HomePage = () => {
                       width: 180,
                       type: "pie",
                     },
+
                     labels: Object.keys(categoryCounts),
                     responsive: [
                       {

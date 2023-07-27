@@ -26,16 +26,21 @@ function App() {
       dispatch(markLoggedIn(true));
     }
   }, [loggedIn, dispatch, token]);
+  const style = {
+    display: "flex",
+    backgroundColor: "#F8F1F9",
+    height: "100vh",
+  };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={style}>
       <Router>
         <DefaultLayout />
         <div style={{ marginLeft: "220px" }}>
           <Routes>
             {loggedIn ? (
               <>
-                <Route path="/" element={<HomePage/>} />
+                <Route path="/" element={<HomePage />} />
                 <Route path="/items" element={<Items />} />
                 <Route path="/ShowCart" element={<ShowCartPage />} />
                 <Route path="/bills" element={<BillsPage />} />
