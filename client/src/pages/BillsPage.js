@@ -10,8 +10,7 @@ const BillsPage = () => {
   const [billsData, setBillsData] = useState(null);
   const [popupModal, setPopupModal] = useState(false);
   const [selectedBill, setSelectedBill] = useState(null);
-	const componentRef = useRef();
-
+  const componentRef = useRef();
   const getAllBills = async () => {
     try {
       const { data } = await axios.get(
@@ -25,11 +24,9 @@ const BillsPage = () => {
   useEffect(() => {
     getAllBills();
   }, []);
-
-	const handlePrint = useReactToPrint({
+  const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-
   return (
     <div className="table-container">
       <table className="custom-table">
@@ -73,6 +70,7 @@ const BillsPage = () => {
         onCancel={() => setPopupModal(false)}
         footer={false}
       >
+      <div className="print" ref={componentRef}>
 			<div className="print" ref={componentRef}>
         <img
           src="https://www.pngitem.com/pimgs/m/178-1783030_online-shopping-logo-png-transparent-png.png"
@@ -114,9 +112,11 @@ const BillsPage = () => {
           <strong> Have a nice day!</strong>
         </div>
         </div>
+        <div>
+        <Button className="printButton" type="primary" onClick={handlePrint}>Print</Button>
+        </div>
       </Modal>
     </div>
   );
 };
-
 export default BillsPage;

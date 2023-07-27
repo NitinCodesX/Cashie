@@ -5,7 +5,7 @@
   border-radius: 10px;
 }
 .logo {
-  background-color: rgb(183, 120, 38);
+  background-color: #000000;
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -18,9 +18,11 @@
 }
 .sidebar {
   border-radius: 10px;
-  height: calc(100vh - 16px);
+  height: 100vh;
+  /* height: calc(100vh - 16px); */
   width: 280px;
-  background-color: burlywood;
+  background-color: #d6e3f8;
+  /* opacity: 0.7; */
   transition: width 0.3s ease;
   text-align: center;
   /* margin-right: 10px; */
@@ -37,7 +39,7 @@
   align-items: center;
   height: 40px;
   cursor: pointer;
-  background-color: #f0f0f0;
+  background-color: #d6e3f8;
   border-bottom: 1px solid #ccc;
 }
 
@@ -64,7 +66,8 @@ li a {
 
 .logout button {
   margin-left: 15px;
-  background-color: burlywood;
+  background-color: #d6e3f8;
+
   text-decoration: underline;
   border: none;
 }

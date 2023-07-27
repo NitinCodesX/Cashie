@@ -15,7 +15,7 @@ const ItemList = ({ item, getAllItems }) => {
   };
 
   const card = {
-    backgroundColor: "#f4f5d5",
+    backgroundColor: "#d6e3f8",
     margin: "10px",
     width: "15rem",
     height: "21rem",
@@ -65,7 +65,11 @@ const ItemList = ({ item, getAllItems }) => {
       <img style={imgStyle} src={item.image} alt={item.name} />
       <h2 style={{ textAlign: "center", margin: "5px" }}>{item.name}</h2>
       <div style={buttonStyle}>
-        <Button onClick={handleShowCart}>Add to cart</Button>
+        <Button
+          onClick={handleShowCart}
+        >
+          Add to cart
+        </Button>
         <Button
           onClick={() => {
             setPopupModal(true);
