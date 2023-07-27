@@ -73,11 +73,7 @@ const BillsPage = () => {
         onCancel={() => setPopupModal(false)}
         footer={false}
       >
-<<<<<<< HEAD
-      <div className="print">
-=======
 			<div className="print" ref={componentRef}>
->>>>>>> nitin-dev
         <img
           src="https://www.pngitem.com/pimgs/m/178-1783030_online-shopping-logo-png-transparent-png.png"
           alt="error"
@@ -117,16 +113,7 @@ const BillsPage = () => {
           Please note this is non refundable amount.
           <strong> Have a nice day!</strong>
         </div>
-<<<<<<< HEAD
         </div>
-=======
-				</div>
-
-				<div>
-				<Button className="printButton" type="primary" onClick={handlePrint}>Print</Button>
-				</div>
-				
->>>>>>> nitin-dev
       </Modal>
     </div>
   );
