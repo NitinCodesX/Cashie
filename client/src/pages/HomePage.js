@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Card } from "antd";
 import Chart from "react-apexcharts";
 import axios from "axios";
-import "../Styles/Homepage.css"
-
+import "../Styles/Homepage.css";
 const HomePage = () => {
   const [data, setData] = useState(null);
   const [total, setTotal] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
   const [categoryCounts, setCategoryCounts] = useState(null);
-
   const fetchD = async () => {
     try {
       const parameters = await axios.get(
@@ -21,7 +19,6 @@ const HomePage = () => {
       console.error("Error fetching data:", error);
     }
   };
-
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -35,7 +32,6 @@ const HomePage = () => {
       console.error("Error fetching data:", error);
     }
   };
-
   const prepareChartData = (data) => {
     const dailyIncomeData = {};
     data?.forEach((transaction) => {
@@ -46,18 +42,14 @@ const HomePage = () => {
         dailyIncomeData[date] = transaction.totalPrice;
       }
     });
-
     const chartData = {
       x: Object.keys(dailyIncomeData), // Dates as x-axis values
       y: Object.values(dailyIncomeData), // Sales values for y-axis
     };
-
     return chartData;
   };
-
   const preparePieChartData = () => {
     let temp = {};
-
     if (data) {
       data.forEach((item) => {
         item.ItemsInCart?.forEach((cartItem) => {
@@ -68,22 +60,17 @@ const HomePage = () => {
         });
       });
     }
-
     setCategoryCounts(temp);
   };
-
   useEffect(() => {
     fetchD();
     fetchData();
   }, []);
-
   useEffect(() => {
     if (data) {
       preparePieChartData();
     }
   }, [data]);
-
-
   return (
     <>
       <div className="container">
@@ -93,14 +80,13 @@ const HomePage = () => {
         </Card>
         <Card className="card" bordered={false}>
           <div className="card-title">Income</div>
-          <div className="card-content">{total}</div>
+          <div className="card-content">$ {total}</div>
         </Card>
         <Card className="card" bordered={false}>
           <div className="card-title">Products</div>
           <div className="card-content">{totalProducts}</div>
         </Card>
       </div>
-
       <div className="bigContainer">
         <Card className="bigCard" bordered={false}>
           <div className="big-card-title">Sales Charts</div>
@@ -145,7 +131,7 @@ const HomePage = () => {
           </div>
         </Card>
         <Card className="bigCard" bordered={false}>
-          <div className="big-card-title">Recent Transactions</div>
+          <div className="big-card-title">Sales Analysis</div>
           <div className="big-card-content">
             <div>
               {categoryCounts && Object.keys(categoryCounts).length > 0 && (
@@ -155,6 +141,7 @@ const HomePage = () => {
                       width: 180,
                       type: "pie",
                     },
+
                     labels: Object.keys(categoryCounts),
                     responsive: [
                       {
@@ -182,5 +169,4 @@ const HomePage = () => {
     </>
   );
 };
-
 export default HomePage;

@@ -42,7 +42,7 @@ const DefaultLayout = () => {
         <div className={`logo ${isSidebarOpen ? "open" : ""}`}>CASHIE</div>
 
         <ul>
-          <li>
+          <li className="buttonns">
             <HomeOutlined />
             <Link to="/">Home</Link>
           </li>
@@ -58,6 +58,11 @@ const DefaultLayout = () => {
             <UserOutlined />
             <Link to="/customers">Customers</Link>
           </li>
+
+          <li className="addToCart">
+            <ShoppingCartOutlined />
+            <Link to="/ShowCart">Show Cart</Link>
+          </li>
           <li className="logout">
             <LogoutOutlined />
             <Button
@@ -68,10 +73,6 @@ const DefaultLayout = () => {
             >
               Logout
             </Button>
-          </li>
-          <li className="addToCart">
-            <ShoppingCartOutlined />
-            <Link to="/ShowCart">Show Cart</Link>
           </li>
         </ul>
       </div>
