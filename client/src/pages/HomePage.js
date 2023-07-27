@@ -6,33 +6,36 @@ import axios from "axios";
 
 const HomePage = () => {
   const [data, setData] = useState(null);
-  const [total, setTotal]=useState(0);
-  const [totalProducts,setTotalProducts]=useState(0);
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/bills/get-bills")
-      .then((response) => {
-        const sortedData = response.data.sort(
-          (a, b) => new Date(a.date) - new Date(b.date)
-        );
+  const [total, setTotal] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
 
-        setData(sortedData);
-        const totalSum = data.reduce((accumulator, item) => accumulator + item.totalPrice, 0);
-        let temp = 0;
-        data.forEach((item) => {
-          const totalQty = item?.ItemsInCart?.reduce((accumulator, cartItem) => accumulator + cartItem.qty, 0);
-          temp+=totalQty
+  useEffect(() => {
+    const fetchD = async () => {
+      const parameters = await axios.get(
+        "http://localhost:8080/api/home/get-parameters"
+      );
+      setTotal(parameters.data.totalIncome);
+      setTotalProducts(parameters.data.totalProducts);
+    };
+    fetchD();
+    const fetchData = async () => {
+      await axios
+        .get("http://localhost:8080/api/bills/get-bills")
+        .then((response) => {
+          const sortedData = response.data.sort(
+            (a, b) => new Date(a.date) - new Date(b.date)
+          );
+          setData(sortedData);
+          console.log(setData);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
         });
-        setTotalProducts(temp)
-        setTotal(totalSum)
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    };
+    fetchData();
   }, []);
 
   const prepareChartData = (data) => {
-    
     const dailyIncomeData = {};
     data?.forEach((transaction) => {
       const date = new Date(transaction.date).toISOString().substr(0, 10); // Convert to 'yyyy-MM-dd' format
@@ -58,12 +61,11 @@ const HomePage = () => {
       zoom: {
         enabled: false,
       },
-      
     },
 
     xaxis: {
-      type: "category", 
-      categories: prepareChartData(data)?.x, 
+      type: "category",
+      categories: prepareChartData(data)?.x,
       labels: {
         style: {
           fontSize: "14px", // Change the font size of x-axis labels
@@ -71,17 +73,15 @@ const HomePage = () => {
       },
     },
     yaxis: {
-      min: 0, 
+      min: 0,
       labels: {
         style: {
           fontSize: "14px", // Change the font size of x-axis labels
         },
       },
     },
-    
   };
 
-  
   return (
     <>
       <div className="container">
@@ -102,25 +102,27 @@ const HomePage = () => {
       <div className="bigContainer">
         <Card className="bigCard" bordered={false}>
           <div className="big-card-title">Sales Charts</div>
-          <div className="big-card-content"><div>
-      <div style={{ width: "80%" }}>
-        {data && (
-          <Chart
-            options={chartOptions}
-            series={[{ data: prepareChartData(data).y }]}
-            type="line"
-            height={400}
-            width={600}
-          />
-        )}
-      </div>
-        </div></div>
+          <div className="big-card-content">
+            <div>
+              <div style={{ width: "80%" }}>
+                {data && (
+                  <Chart
+                    options={chartOptions}
+                    series={[{ data: prepareChartData(data).y }]}
+                    type="line"
+                    height={600}
+                    width={800}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
         </Card>
         <Card className="bigCard" bordered={false}>
           <div className="big-card-title">Recent Transactions</div>
           <div className="big-card-content">EEEEEE</div>
         </Card>
-    </div>
+      </div>
     </>
   );
 };

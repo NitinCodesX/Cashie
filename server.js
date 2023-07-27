@@ -22,6 +22,7 @@ app.use(morgan("dev"));
 app.use("/api/items", require("./routes/itemRoutes"));
 app.use("/api/users", require('./routes/userRoutes'))
 app.use("/api/bills",require("./routes/billsRoute"))
+app.use("/api/home",require("./routes/homeRoute"))
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server Running On Port ${PORT}`.bgMagenta);
