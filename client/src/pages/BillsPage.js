@@ -111,6 +111,9 @@ const BillsPage = () => {
           <strong> Have a nice day!</strong>
         </div>
         </div>
+        <div>
+        <Button className="printButton" type="primary" onClick={handlePrint}>Print</Button>
+        </div>
       </Modal>
     </div>
   );
