@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const corsOptions = require("./utils/cors")
+const corsOptions = require("./utils/cors");
 require("colors");
 const connectDB = require("./config/config");
 dotenv.config();
@@ -19,10 +19,15 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 //routes
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    message: "Server Test",
+  });
+});
 app.use("/api/items", require("./routes/itemRoutes"));
-app.use("/api/users", require('./routes/userRoutes'))
-app.use("/api/bills",require("./routes/billsRoute"))
-app.use("/api/home",require("./routes/homeRoute"))
+app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/bills", require("./routes/billsRoute"));
+app.use("/api/home", require("./routes/homeRoute"));
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server Running On Port ${PORT}`.bgMagenta);
