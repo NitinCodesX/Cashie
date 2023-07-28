@@ -12,7 +12,7 @@ const CustomerPage = () => {
 		
     try {
       const { data } = await axios.get(
-        "http://localhost:8080/api/bills/get-bills"
+        `${process.env.backendURL}/api/bills/get-bills`
       );
       setBillsData(data);
       console.log(billsData)

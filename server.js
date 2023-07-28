@@ -19,11 +19,6 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 //routes
-app.get("/", (req, res) => {
-  return res.status(200).json({
-    message: "Server Test",
-  });
-});
 app.use("/api/items", require("./routes/itemRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/bills", require("./routes/billsRoute"));

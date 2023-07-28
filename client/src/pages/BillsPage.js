@@ -14,7 +14,7 @@ const BillsPage = () => {
   const getAllBills = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8080/api/bills/get-bills"
+        `${process.env.backendURL}/api/bills/get-bills`
       );
       setBillsData(data);
     } catch (error) {

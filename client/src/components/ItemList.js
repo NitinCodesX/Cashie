@@ -34,7 +34,7 @@ const ItemList = ({ item, getAllItems }) => {
 
   const handleEditSubmit = async (value) => {
     try {
-      await axios.put("http://localhost:8080/api/items/edit-item", {
+      await axios.put(`${process.env.backendURL}/api/items/edit-item`, {
         ...value,
         itemId: editItem._id,
       });
@@ -49,7 +49,7 @@ const ItemList = ({ item, getAllItems }) => {
 
   const handleDeleteSubmit = async (id) => {
     try {
-      await axios.delete("http://localhost:8080/api/items/delete-item", {
+      await axios.delete(`${process.env.backendURL}/api/items/delete-item`, {
         data: { itemId: id },
       });
       message.success("Item Deleted Successfully");
