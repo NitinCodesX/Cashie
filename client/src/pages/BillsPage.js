@@ -1,8 +1,8 @@
-import { Button, Modal} from "antd";
+import { Button, Modal } from "antd";
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
-import ReactToPrint from 'react-to-print';
-import { useReactToPrint } from 'react-to-print';
+import ReactToPrint from "react-to-print";
+import { useReactToPrint } from "react-to-print";
 import "../Styles/BillsPage.css";
 import { EyeOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
@@ -70,7 +70,7 @@ const BillsPage = () => {
         onCancel={() => setPopupModal(false)}
         footer={false}
       >
-      <div className="print" ref={componentRef}>
+			<div className="print" ref={componentRef}>
         <img
           src="https://www.pngitem.com/pimgs/m/178-1783030_online-shopping-logo-png-transparent-png.png"
           alt="error"
@@ -112,7 +112,9 @@ const BillsPage = () => {
         </div>
         </div>
         <div>
-        <Button className="printButton" type="primary" onClick={handlePrint}>Print</Button>
+          <Button className="printButton" type="primary" onClick={handlePrint}>
+            Print
+          </Button>
         </div>
       </Modal>
     </div>
