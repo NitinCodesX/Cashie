@@ -34,7 +34,7 @@ const ItemList = ({ item, getAllItems }) => {
 
   const handleEditSubmit = async (value) => {
     try {
-      await axios.put(`${process.env.backendURL}/api/items/edit-item`, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/items/edit-item`, {
         ...value,
         itemId: editItem._id,
       });
@@ -49,9 +49,12 @@ const ItemList = ({ item, getAllItems }) => {
 
   const handleDeleteSubmit = async (id) => {
     try {
-      await axios.delete(`${process.env.backendURL}/api/items/delete-item`, {
-        data: { itemId: id },
-      });
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/items/delete-item`,
+        {
+          data: { itemId: id },
+        }
+      );
       message.success("Item Deleted Successfully");
       getAllItems();
     } catch (error) {
@@ -65,11 +68,7 @@ const ItemList = ({ item, getAllItems }) => {
       <img style={imgStyle} src={item.image} alt={item.name} />
       <h2 style={{ textAlign: "center", margin: "5px" }}>{item.name}</h2>
       <div style={buttonStyle}>
-        <Button
-          onClick={handleShowCart}
-        >
-          Add to cart
-        </Button>
+        <Button onClick={handleShowCart}>Add to cart</Button>
         <Button
           onClick={() => {
             setPopupModal(true);

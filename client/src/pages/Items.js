@@ -47,7 +47,7 @@ const HomePage = () => {
   const getAllItems = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.backendURL}/api/items/get-item`
+        `${process.env.REACT_APP_API_URL}/api/items/get-item`
       );
       setItemsData(data);
     } catch (error) {
@@ -63,7 +63,7 @@ const HomePage = () => {
   const handleSubmit = async (value) => {
     try {
       const res = await axios.post(
-        `${process.env.backendURL}/api/items/add-item`,
+        `${process.env.REACT_APP_API_URL}/api/items/add-item`,
         value
       );
       console.log(res);

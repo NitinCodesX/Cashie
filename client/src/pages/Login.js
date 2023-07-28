@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (value) => {
     try {
       const res = await axios.post(
-        `${process.env.backendURL}/api/users/login`,
+        `${process.env.REACT_APP_API_URL}/api/users/login`,
         value
       );
       dispatch(markLoggedIn(true));

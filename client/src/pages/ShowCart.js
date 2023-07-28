@@ -37,7 +37,10 @@ const ShowCartPage = () => {
         date,
       };
       console.log(`new object: `, newObject);
-      await axios.post(`${process.env.backendURL}/api/bills/add-bills`, newObject);
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/bills/add-bills`,
+        newObject
+      );
       message.success("Bill generate");
       dispatch(emptyCart());
 

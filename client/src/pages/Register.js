@@ -8,7 +8,10 @@ const Register = () => {
   const navigate = useNavigate();
   const handleSubmit = async (value) => {
     try {
-      await axios.post(`${process.env.backendURL}/api/users/register`, value);
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/users/register`,
+        value
+      );
       message.success("Registered successfully");
       navigate("/login");
     } catch (error) {
