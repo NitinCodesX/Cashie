@@ -11,7 +11,7 @@ const HomePage = () => {
   const fetchD = async () => {
     try {
       const parameters = await axios.get(
-        "http://localhost:8080/api/home/get-parameters"
+        `${process.env.REACT_APP_API_URL}/api/home/get-parameters`
       );
       setTotal(parameters.data.totalIncome);
       setTotalProducts(parameters.data.totalProducts);
@@ -22,7 +22,7 @@ const HomePage = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/bills/get-bills"
+        `${process.env.REACT_APP_API_URL}/api/bills/get-bills`
       );
       const sortedData = response.data.sort(
         (a, b) => new Date(a.date) - new Date(b.date)
